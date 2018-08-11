@@ -19,8 +19,12 @@
 #  along with Elixir.  If not, see <http://www.gnu.org/licenses/>.
 
 import subprocess
+import projects
 
 def script (*args):
+    if projects.script:
+        return projects.script(*args)
+
     args = ('./script.sh',) + args
     # subprocess.run was introduced in Python 3.5
     # fall back to subprocess.check_output if it's not available
